@@ -3,19 +3,15 @@ $(document).ready(function () {
     infinite: true,
     speed: 1200,
     adaptiveHeight: true,
-    prevArrow:
-      '<button type="button" class="slick-prev"><img src="icons/chevron/left_solid.svg"></img></button>',
-    nextArrow:
-      '<button type="button" class="slick-next"><img src="icons/chevron/right_solid.svg"></img></button>',
-    responsive: [
-      {
-        breakpoint: 992,
-        settings: {
-          dots: false,
-          arrows: false,
-        },
+    prevArrow: '<button type="button" class="slick-prev"><img src="icons/chevron/left_solid.svg"></img></button>',
+    nextArrow: '<button type="button" class="slick-next"><img src="icons/chevron/right_solid.svg"></img></button>',
+    responsive: [{
+      breakpoint: 992,
+      settings: {
+        dots: false,
+        arrows: false,
       },
-    ],
+    }, ],
   });
 
   $("ul.catalog__tabs").on(
@@ -111,4 +107,22 @@ $(document).ready(function () {
     });
     return false;
   });
+
+  $(window).scroll(function () {
+    if ($(this).scrollTop() > 1600) {
+      $('.pageup').fadeIn();
+    } else {
+      $('.pageup').fadeOut();
+    }
+  });
+
+  $("a[href=#up]").click(function () {
+    const _href = $(this).attr("href");
+    $("html, body").animate({
+      scrollTop: $(_href).offset().top + "px"
+    });
+    return false;
+  });
+
+  new WOW().init();
 });
